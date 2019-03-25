@@ -17,6 +17,11 @@ html {
     line-height: 1.5;
     font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
     color: #111;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 
 /*
@@ -167,15 +172,194 @@ a:focus {
     Object description
 */
 
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+    padding: 24px 24px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.o-row--primary {
+    background: #e85e00;
+    color: white;
+}
+
+.o-row--dark {
+    background: #111111;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .o-row--lg {
+        padding: 48px 48px 24px;
+    }
+}
+
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+    width: 100%;
+    max-width: 90em;
+    margin: 0 auto;
+}
+
+/*
+    Objects: Layout
+    ---
+    The layout object provides us with a column-style layout system. This object
+    contains the basic structural elements, but classes should be complemented
+    with width utilities
+*/
+
+.o-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.o-layout__item {
+    width: 100%;
+}
+
+/* gutter modifiers, these affect o-layout__item too */
+
+.o-layout--gutter {
+    margin: 0 -12px;
+}
+
+.o-layout--gutter > .o-layout__item {
+    padding: 0 12px;
+}
+
+.o-layout--gutter-sm {
+    margin: 0 -6px;
+}
+
+.o-layout--gutter-sm > .o-layout__item {
+    padding: 0 6px;
+}
+
+.o-layout--gutter-lg {
+    margin: 0 -24px;
+}
+
+.o-layout--gutter-lg > .o-layout__item {
+    padding: 0 24px;
+}
+
+/* reverse horizontal row modifier */
+
+.o-layout--row-reverse {
+    flex-direction: row-reverse;
+}
+
+/* Horizontal alignment modifiers*/
+
+.o-layout--justify-start {
+    justify-content: flex-start;
+}
+
+.o-layout--justify-end {
+    justify-content: flex-end;
+}
+
+.o-layout--justify-center {
+    justify-content: center;
+}
+
+.o-layout--justify-space-around {
+    justify-content: space-around;
+}
+
+.o-layout--justify-space-between {
+    justify-content: space-between;
+}
+.o-layout--justify-space-evenly {
+    justify-content: space-evenly;
+}
+
+/* Vertical item alignment modifiers */
+
+.o-layout--align-start {
+    align-items: flex-start;
+}
+
+.o-layout--align-end {
+    align-items: flex-end;
+}
+
+.o-layout--align-center {
+    align-items: center;
+}
+
+.o-layout--align-baseline {
+    align-items: baseline;
+}
+
+/* Vertical content alignment modifiers. Only work if there is one than one flex item */
+
+.o-layout--align-content-start {
+    align-content: flex-start;
+}
+
+.o-layout--align-content-end {
+    align-content: flex-end;
+}
+
+.o-layout--align-content-center {
+    align-content: center;
+}
+
+.o-layout--align-content-space-around {
+    align-content: space-around;
+}
+
+.o-layout--align-content-space-between {
+    align-content: space-between;
+}
+.o-layout--align-content-space-evenly {
+    align-content: space-evenly;
+}
+.o-layout--align-content-baseline{
+    align-content: baseline;
+}
+
+/* Vertical self alignment modifiers.*/
+.o-layout--align-self-center{
+    align-self: center;
+
+}
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
 
 /*
-    Component: Component name
+    Component: layout block
     ---
-    Component description
+    A small component to demonstrate the layout items
 */
+
+.c-layout-block {
+    background-color: LightGrey;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.c-layout-block--ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /*------------------------------------*\
   #UTILITIES
@@ -184,18 +368,268 @@ a:focus {
 /*
     Utilities: max-width
     ---
-    Utility classes to put specific max widths onto elements.
+    Utility classes to put specific max widths onto elements
 */
 
 .u-max-width-sm {
     max-width: 36em;
 }
 
+.u-max-width-md {
+    max-width: 45em;
+}
+
+.u-max-width-lg {
+    max-width: 45em;
+}
+
+.u-max-width-xl {
+    max-width: 60em;
+}
+
+.u-max-width-none {
+    max-width: 75em;
+}
+
 /*
-    Utility: Utility name
+    Utility: Widths
     ---
-    Utility description
+    Utility classes to put specific widths onto elements
+    Will be mostly used on o-layout__item
 */
+
+.u-width-auto {
+    width: auto;
+}
+
+.u-1-of-2 {
+    width: 50%;
+}
+
+.u-1-of-3 {
+    width: calc(100% / 3);
+}
+
+.u-2-of-3 {
+    width: calc(100% / 3 * 2);
+}
+
+.u-1-of-4 {
+    width: calc(100% / 4);
+}
+
+.u-3-of-4 {
+    width: calc(100% / 4 * 3);
+}
+
+.u-1-of-5 {
+    width: calc(100% / 5);
+}
+
+.u-2-of-5 {
+    width: calc(100% / 5 * 2);
+}
+
+.u-3-of-5 {
+    width: calc(100% / 5 * 3);
+}
+
+.u-4-of-5 {
+    width: calc(100% / 5 * 4);
+}
+
+.u-1-of-6 {
+    width: calc(100% / 6);
+}
+
+.u-5-of-6 {
+    width: calc(100% / 6 * 5);
+}
+
+@media (min-width: 576px) {
+    .u-1-of-2-bp1 {
+        width: 50%;
+    }
+
+    .u-1-of-3-bp1 {
+        width: calc(100% / 3);
+    }
+
+    .u-2-of-3-bp1 {
+        width: calc(100% / 3 * 2);
+    }
+
+    .u-1-of-4-bp1 {
+        width: calc(100% / 4);
+    }
+
+    .u-3-of-4-bp1 {
+        width: calc(100% / 4 * 3);
+    }
+
+    .u-1-of-5-bp1 {
+        width: calc(100% / 5);
+    }
+
+    .u-2-of-5-bp1 {
+        width: calc(100% / 5 * 2);
+    }
+
+    .u-3-of-5-bp1 {
+        width: calc(100% / 5 * 3);
+    }
+
+    .u-4-of-5-bp1 {
+        width: calc(100% / 5 * 4);
+    }
+
+    .u-1-of-6-bp1 {
+        width: calc(100% / 6);
+    }
+
+    .u-5-of-6-bp1 {
+        width: calc(100% / 6 * 5);
+    }
+
+}
+
+@media (min-width: 768px) {
+    .u-1-of-2-bp2 {
+        width: 50%;
+    }
+
+    .u-1-of-3-bp2 {
+        width: calc(100% / 3);
+    }
+
+    .u-2-of-3-bp2 {
+        width: calc(100% / 3 * 2);
+    }
+
+    .u-1-of-4-bp2 {
+        width: calc(100% / 4);
+    }
+
+    .u-3-of-4-bp2 {
+        width: calc(100% / 4 * 3);
+    }
+
+    .u-1-of-5-bp2 {
+        width: calc(100% / 5);
+    }
+
+    .u-2-of-5-bp2 {
+        width: calc(100% / 5 * 2);
+    }
+
+    .u-3-of-5-bp2 {
+        width: calc(100% / 5 * 3);
+    }
+
+    .u-4-of-5-bp2 {
+        width: calc(100% / 5 * 4);
+    }
+
+    .u-1-of-6-bp2 {
+        width: calc(100% / 6);
+    }
+
+    .u-5-of-6-bp2 {
+        width: calc(100% / 6 * 5);
+    }
+}
+
+@media (min-width: 992px) {
+    .u-1-of-2-bp3 {
+        width: 50%;
+    }
+
+    .u-1-of-3-bp3 {
+        width: calc(100% / 3);
+    }
+
+    .u-2-of-3-bp3 {
+        width: calc(100% / 3 * 2);
+    }
+
+    .u-1-of-4-bp3 {
+        width: calc(100% / 4);
+    }
+
+    .u-3-of-4-bp3 {
+        width: calc(100% / 4 * 3);
+    }
+
+    .u-1-of-5-bp3 {
+        width: calc(100% / 5);
+    }
+
+    .u-2-of-5-bp3 {
+        width: calc(100% / 5 * 2);
+    }
+
+    .u-3-of-5-bp3 {
+        width: calc(100% / 5 * 3);
+    }
+
+    .u-4-of-5-bp3 {
+        width: calc(100% / 5 * 4);
+    }
+
+    .u-1-of-6-bp3 {
+        width: calc(100% / 6);
+    }
+
+    .u-5-of-6-bp3 {
+        width: calc(100% / 6 * 5);
+    }
+}
+
+@media (min-width: 1200px) {
+    .u-1-of-2-bp4 {
+        width: 50%;
+    }
+
+    .u-1-of-3-bp4 {
+        width: calc(100% / 3);
+    }
+
+    .u-2-of-3-bp4 {
+        width: calc(100% / 3 * 2);
+    }
+
+    .u-1-of-4-bp4 {
+        width: calc(100% / 4);
+    }
+
+    .u-3-of-4-bp4 {
+        width: calc(100% / 4 * 3);
+    }
+
+    .u-1-of-5-bp4 {
+        width: calc(100% / 5);
+    }
+
+    .u-2-of-5-bp4 {
+        width: calc(100% / 5 * 2);
+    }
+
+    .u-3-of-5-bp4 {
+        width: calc(100% / 5 * 3);
+    }
+
+    .u-4-of-5-bp4 {
+        width: calc(100% / 5 * 4);
+    }
+
+    .u-1-of-6-bp4 {
+        width: calc(100% / 6);
+    }
+
+    .u-5-of-6-bp4 {
+        width: calc(100% / 6 * 5);
+    }
+}
 
 /*------------------------------------*\
   #MEDIA
@@ -247,16 +681,20 @@ a:focus {
         box-shadow: none !important;
         text-shadow: none !important;
     }
+
     a,
     a:visited {
         text-decoration: underline;
     }
+
     a[href]:after {
         content: " (" attr(href) ")";
     }
+
     abbr[title]:after {
         content: " (" attr(title) ")";
     }
+
     /*
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
@@ -265,14 +703,17 @@ a:focus {
     a[href^="javascript:"]:after {
         content: "";
     }
+
     pre {
         white-space: pre-wrap !important;
     }
+
     pre,
     blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
     }
+
     /*
      * Printing Tables:
      * http://css-discuss.incutio.com/wiki/Printing_Tables
@@ -280,18 +721,22 @@ a:focus {
     thead {
         display: table-header-group;
     }
+
     tr,
     img {
         page-break-inside: avoid;
     }
+
     p,
     h2,
     h3 {
         orphans: 3;
         widows: 3;
     }
+
     h2,
     h3 {
         page-break-after: avoid;
     }
 }
+
